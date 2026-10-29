@@ -1,0 +1,42 @@
+﻿
+@model IEnumerable<SistemaCondominiosMVC.Models.Categoria>
+
+@{
+    ViewBag.Title = "Categorías";
+}
+
+<h2>Listado de Categorías</h2>
+
+<p>
+    Categorías registradas en el sistema de condominios.
+</p>
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var categoria in Model)
+        {
+            <tr>
+                <td>@categoria.IdCategoria</td>
+                <td>@categoria.Nombre</td>
+                <td>@categoria.Descripcion</td>
+
+                <td>
+                    @(categoria.Estado ? "Activo" : "Inactivo")
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

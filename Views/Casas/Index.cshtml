@@ -1,0 +1,52 @@
+﻿
+@model IEnumerable<SistemaCondominiosMVC.Models.Casa>
+
+@{
+    ViewBag.Title = "Casas";
+}
+
+<h2>Listado de Casas</h2>
+
+<p>
+    Casas registradas en el sistema de condominios.
+</p>
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre de la Casa</th>
+            <th>Metros Cuadrados</th>
+            <th>Habitaciones</th>
+            <th>Baños</th>
+            <th>Precio</th>
+            <th>Propietario</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var casa in Model)
+        {
+            <tr>
+                <td>@casa.IdCasa</td>
+                <td>@casa.NombreCasa</td>
+                <td>@casa.MetrosCuadrados</td>
+                <td>@casa.NumeroHabitaciones</td>
+                <td>@casa.NumeroBanos</td>
+                <td>@casa.Precio.ToString("C2", new System.Globalization.CultureInfo("es-CR"))</td>
+
+                <td>
+                    @casa.NombrePropietario
+                    @casa.ApellidoPropietario
+                </td>
+
+                <td>@casa.EmailPropietario</td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

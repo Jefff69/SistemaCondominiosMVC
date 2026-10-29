@@ -1,0 +1,63 @@
+﻿@* Indica que la vista recibe una lista de objetos Persona. *@
+@model IEnumerable<SistemaCondominiosMVC.Models.Persona>
+
+@{
+
+    ViewBag.Title = "Personas";
+}
+
+<h2>Listado de Personas</h2>
+
+<p>
+    Personas registradas en el sistema de condominios.
+</p>
+
+@* Tabla que presenta la información recibida del controlador. *@
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo electrónico</th>
+            <th>Teléfono</th>
+            <th>Dirección</th>
+            <th>Fecha de nacimiento</th>
+            <th>Tipo de persona</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @* Recorremos la lista para mostrar una fila por persona. *@
+        @foreach (var persona in Model)
+        {
+            <tr>
+                <td>@persona.IdPersona</td>
+                <td>@persona.Nombre</td>
+                <td>@persona.Apellido</td>
+                <td>@persona.Email</td>
+                <td>@persona.Telefono</td>
+                <td>@persona.Direccion</td>
+
+                @* Verificamos si existe una fecha antes de mostrarla. *@
+                <td>
+                    @(persona.FechaNacimiento.HasValue
+                        ? persona.FechaNacimiento.Value.ToString("dd/MM/yyyy")
+                        : "No registrada")
+                </td>
+
+                <td>@persona.TipoPersona</td>
+
+                @* El estado puede ser activo, inactivo o no registrado. *@
+                <td>
+                    @(persona.Estado.HasValue
+                        ? (persona.Estado.Value ? "Activo" : "Inactivo")
+                        : "No registrado")
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

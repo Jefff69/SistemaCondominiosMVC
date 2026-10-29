@@ -1,33 +1,186 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿
+@{
+    // Título que identifica la página en la aplicación.
+    ViewBag.Title = "Inicio";
 }
 
+@* Estilos exclusivos de la portada. *@
+<style>
+    .portada {
+        background: linear-gradient(100deg, #10375c, #17619a);
+        color: white;
+        padding: 38px 35px;
+        border-radius: 8px;
+        margin-bottom: 25px;
+    }
+
+        .portada h1 {
+            font-size: 38px;
+            font-weight: 700;
+            margin-top: 0;
+        }
+
+        .portada p {
+            font-size: 17px;
+            margin-bottom: 0;
+        }
+
+    .tarjeta-modulo {
+        background: #fff;
+        border: 1px solid #e3e8ee;
+        border-radius: 8px;
+        padding: 22px;
+        margin-bottom: 22px;
+        min-height: 260px;
+        box-shadow: 0 2px 7px rgba(0, 0, 0, 0.06);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+        .tarjeta-modulo:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.10);
+        }
+
+    .icono-modulo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 58px;
+        height: 58px;
+        border-radius: 10px;
+        background: #e2efff;
+        color: #0879df;
+        font-size: 28px;
+        margin-bottom: 14px;
+    }
+
+    .tarjeta-modulo h3 {
+        font-size: 21px;
+        font-weight: 600;
+        margin-top: 0;
+    }
+
+    .tarjeta-modulo p {
+        min-height: 45px;
+        color: #4b5563;
+    }
+
+    .tarjeta-modulo .btn {
+        margin-top: 10px;
+    }
+
+    .pie-portada {
+        border-top: 1px solid #ddd;
+        padding-top: 15px;
+        margin-top: 5px;
+        color: #555;
+    }
+</style>
+
 <main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+    @* Encabezado principal del sistema. *@
+    <section class="portada">
+        <h1>Sistema de Condominios</h1>
+        <p>
+            Gestión integral de casas, servicios, personas y cobros
+            en un solo lugar.
+        </p>
+        <p>
+            Administración más simple, organizada y eficiente.
+        </p>
     </section>
 
+    @* Tarjetas que dan acceso a los módulos existentes. *@
     <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
+
+        <div class="col-md-4 col-lg-3">
+            <section class="tarjeta-modulo">
+                <div class="icono-modulo">&#127968;</div>
+                <h3>Casas</h3>
+                <p>Consulta las casas registradas y sus propietarios.</p>
+                @Html.ActionLink(
+                    "Ver casas »", "Index", "Casas",
+                    null, new { @class = "btn btn-primary" })
+            </section>
+        </div>
+
+        <div class="col-md-4 col-lg-3">
+            <section class="tarjeta-modulo">
+                <div class="icono-modulo">&#9776;</div>
+                <h3>Servicios</h3>
+                <p>Consulta los servicios, sus precios y estados.</p>
+                @Html.ActionLink(
+                    "Ver servicios »", "Index", "Servicios",
+                    null, new { @class = "btn btn-primary" })
+            </section>
+        </div>
+
+        <div class="col-md-4 col-lg-3">
+            <section class="tarjeta-modulo">
+                <div class="icono-modulo">&#127991;</div>
+                <h3>Categorías</h3>
+                <p>Consulta las categorías de servicios registradas.</p>
+                @Html.ActionLink(
+                    "Ver categorías »", "Index", "Categorias",
+                    null, new { @class = "btn btn-primary" })
+            </section>
+        </div>
+
+        <div class="col-md-4 col-lg-3">
+            <section class="tarjeta-modulo">
+                <div class="icono-modulo">&#128101;</div>
+                <h3>Personas</h3>
+                <p>Consulta los propietarios y las personas del sistema.</p>
+                @Html.ActionLink(
+                    "Ver personas »", "Index", "Personas",
+                    null, new { @class = "btn btn-primary" })
+            </section>
+        </div>
+
+        <div class="col-md-4 col-lg-3">
+            <section class="tarjeta-modulo">
+                <div class="icono-modulo">&#128196;</div>
+                <h3>Cobros</h3>
+                <p>Consulta los cobros por casa, período y propietario.</p>
+                @Html.ActionLink(
+                    "Ver cobros »", "Index", "Cobros",
+                    null, new { @class = "btn btn-primary" })
+            </section>
+        </div>
+
+        @* Estas tarjetas representan módulos que desarrollaremos después. *@
+        <div class="col-md-4 col-lg-3">
+            <section class="tarjeta-modulo">
+                <div class="icono-modulo">&#128203;</div>
+                <h3>Bitácoras</h3>
+                <p>Registro de actividades y eventos del condominio.</p>
+                <button class="btn btn-secondary" disabled>
+                    Próximamente
+                </button>
+            </section>
+        </div>
+
+        <div class="col-md-4 col-lg-3">
+            <section class="tarjeta-modulo">
+                <div class="icono-modulo">&#128176;</div>
+                <h3>Pagos</h3>
+                <p>Registro y control de pagos realizados.</p>
+                <button class="btn btn-secondary" disabled>
+                    Próximamente
+                </button>
+            </section>
+        </div>
+
+        <div class="col-md-4 col-lg-3">
+            <section class="tarjeta-modulo">
+                <div class="icono-modulo">&#128202;</div>
+                <h3>Reportes</h3>
+                <p>Consulta de reportes y estadísticas del condominio.</p>
+                <button class="btn btn-secondary" disabled>
+                    Próximamente
+                </button>
+            </section>
+        </div>
+
     </div>
 </main>

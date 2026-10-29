@@ -6,6 +6,39 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+
+
+    <style>
+        /* La página ocupa al menos toda la altura de la pantalla. */
+        html, body {
+            min-height: 100%;
+            margin: 0;
+        }
+
+        /* Distribuye el menú, el contenido y el pie verticalmente. */
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* El contenido ocupa el espacio libre de la pantalla. */
+        .body-content {
+            flex: 1 0 auto;
+            width: 100%;
+        }
+
+            /* El pie conserva su posición debajo del contenido. */
+            .body-content footer {
+                margin-top: auto;
+                padding-top: 20px;
+                padding-bottom: 10px;
+            }
+    </style>
+
+
+
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
@@ -20,17 +53,75 @@
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+
+
+                    @* Casas y Servicios son opciones exclusivas de empleados. *@
+                    @if (Session["EsEmpleado"] is bool esEmpleado && esEmpleado)
+                    {
+                        <li>
+                            @Html.ActionLink(
+                                "Casas",
+                                "Index",
+                                "Casas",
+                                new { area = "" },
+                                new { @class = "nav-link" })
+                        </li>
+
+                        <li>
+                            @Html.ActionLink(
+                                "Servicios",
+                                "Index",
+                                "Servicios",
+                                new { area = "" },
+                                new { @class = "nav-link" })
+                        </li>
+                    }
+
+
+                    <li>@Html.ActionLink("Categorías", "Index", "Categorias", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Personas", "Index", "Personas", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Cobros", "Index", "Cobros", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
+
+
+                <ul class="navbar-nav ms-auto">
+                    @* Mostramos el nombre cuando hay una sesión iniciada. *@
+                    @if (Session["NombreCompleto"] != null)
+                    {
+                        <li class="nav-item">
+                            <span class="nav-link text-light">
+                                Hola, @Session["NombreCompleto"]
+                            </span>
+                        </li>
+
+                        <li>
+                            @Html.ActionLink(
+                                "Cerrar sesión",
+                                "CerrarSesion",
+                                "Login",
+                                new { area = "" },
+                                new { @class = "nav-link" })
+                        </li>
+                    }
+                </ul>
+
             </div>
         </div>
     </nav>
+
+
+
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
+
+    <footer class="container mt-auto">
+        <hr />
+        <p>&copy; @DateTime.Now.Year - Sistema de Condominios</p>
+    </footer>
+
+
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

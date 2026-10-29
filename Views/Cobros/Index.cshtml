@@ -1,0 +1,64 @@
+﻿@* Recibe la lista de cobros enviada por CobrosController. *@
+@model IEnumerable<SistemaCondominiosMVC.Models.Cobro>
+
+@{
+    // Título de la página.
+    ViewBag.Title = "Cobros";
+}
+
+<h2>Listado de Cobros</h2>
+
+<p>
+    Cobros registrados en el sistema de condominios.
+</p>
+
+@* Tabla para presentar los cobros y sus datos relacionados. *@
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Mes</th>
+            <th>Año</th>
+            <th>Casa</th>
+            <th>Propietario</th>
+            <th>Monto</th>
+            <th>Estado</th>
+            <th>Fecha de pago</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @* Creamos una fila para cada cobro recibido. *@
+        @foreach (var cobro in Model)
+        {
+            <tr>
+                <td>@cobro.IdCobro</td>
+                <td>@cobro.Mes</td>
+                <td>@cobro.Anno</td>
+                <td>@cobro.NombreCasa</td>
+
+                <td>
+                    @cobro.NombrePropietario
+                    @cobro.ApellidoPropietario
+                </td>
+
+                @* Mostramos el monto con formato de moneda costarricense. *@
+                <td>
+                    @cobro.Monto.ToString(
+                        "C2",
+                        new System.Globalization.CultureInfo("es-CR")
+                    )
+                </td>
+
+                <td>@cobro.Estado</td>
+
+                @* Si no hay fecha de pago, indicamos que no está registrada. *@
+                <td>
+                    @(cobro.FechaPagada.HasValue
+                        ? cobro.FechaPagada.Value.ToString("dd/MM/yyyy")
+                        : "Sin pagar")
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

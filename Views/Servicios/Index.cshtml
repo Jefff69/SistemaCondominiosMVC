@@ -1,0 +1,50 @@
+﻿
+@model IEnumerable<SistemaCondominiosMVC.Models.Servicio>
+
+@{
+    ViewBag.Title = "Servicios";
+}
+
+<h2>Listado de Servicios</h2>
+
+<p>
+    Servicios registrados en el sistema de condominios.
+</p>
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Categoría</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var servicio in Model)
+        {
+            <tr>
+                <td>@servicio.IdServicio</td>
+                <td>@servicio.Nombre</td>
+                <td>@servicio.Descripcion</td>
+
+                <td>
+                    @servicio.Precio.ToString("C2", new System.Globalization.CultureInfo("es-CR"))
+                </td>
+
+                <td>@servicio.IdCategoria</td>
+
+                <td>
+                    @(servicio.Estado ? "Activo" : "Inactivo")
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
