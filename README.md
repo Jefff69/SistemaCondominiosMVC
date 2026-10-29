@@ -126,10 +126,8 @@ SistemaCondominiosMVC/
 ### 1. Clonar el repositorio
 
 ```bash
-git clone URL_DEL_REPOSITORIO
+git clone [URL_DEL_REPOSITORIO](https://github.com/Jefff69/SistemaCondominiosMVC.git)
 ```
-
-Reemplaza `URL_DEL_REPOSITORIO` por la URL real del repositorio de GitHub.
 
 ### 2. Abrir la solución
 
